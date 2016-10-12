@@ -27,15 +27,12 @@ worksheet = workbook.add_worksheet()
 
 with open('excelsheets/sheet1.csv', 'r') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+    print(spamreader)
+    vals = []
     for row in spamreader:
-        print(', '.join(row))
-
-rb = xlrd.open_workbook('excelsheets/sheet1.xlsx', formatting_info=False)
-sheet = rb.sheet_by_index(0)
-
-vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
+        vals.append(row)
 print(vals)
-print(vals[1][0])
+
 pattern = re.compile('Кафедра*', re.IGNORECASE)
 number = 0
 
