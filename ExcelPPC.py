@@ -25,9 +25,11 @@ def writeToXLSX(row, rownumber):
 workbook = xlsxwriter.Workbook('excelsheets/result.xlsx')
 worksheet = workbook.add_worksheet()
 
-with open('excelsheets/sheet1.csv', 'rb') as csvfile:
+with open('excelsheets/sheet1.csv', 'r') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     for row in spamreader:
+        print(', '.join(row))
+
 rb = xlrd.open_workbook('excelsheets/sheet1.xlsx', formatting_info=False)
 sheet = rb.sheet_by_index(0)
 
