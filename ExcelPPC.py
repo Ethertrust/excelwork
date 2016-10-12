@@ -1,6 +1,7 @@
 import xlsxwriter
 import xlrd
 import re
+import csv
 
 def step(row, number, parseStep1):
 
@@ -24,6 +25,9 @@ def writeToXLSX(row, rownumber):
 workbook = xlsxwriter.Workbook('excelsheets/result.xlsx')
 worksheet = workbook.add_worksheet()
 
+with open('excelsheets/sheet1.csv', 'rb') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+    for row in spamreader:
 rb = xlrd.open_workbook('excelsheets/sheet1.xlsx', formatting_info=False)
 sheet = rb.sheet_by_index(0)
 
